@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.hxr.springbootdemo.mapper.UserMapper">
+
+
+
+    <resultMap id="generalMap" type="com.hxr.springbootdemo.entity.UserBean">
+        <id column="userId" property="userId" jdbcType="INTEGER" />
+        <result column="userName" property="userName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+      user_id AS userId, user_name AS userName
+    </sql>
+
+    <select id="selectByUserId" resultMap="generalMap" parameterType="java.lang.Integer">
+              select <include refid="Base_Column_List"></include> from dbo.Base_Users where user_id = #{userId}
+    </select>
+
+
+
+<!--    <select id="selectByUserId" resultType="com.hxr.springbootdemo.entity.UserBean">
+        select user_id as userId, user_name AS userName from Users where user_id = 1
+    </select>-->
+
+
+<!--    <select id="selectByUserId" parameterType="java.lang.Integer" resultType="com.hxr.springbootdemo.entity.UserBean">
+        select user_id as userId, user_name AS userName from Users where user_id = #{userId}
+    </select>-->
+
+    <select id="countAll" resultType="java.lang.Integer">
+        select count(*) from dbo.Base_Users
+    </select>
+
+
+
+    <select id="countUserById" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from dbo.Base_Users where user_id = #{userId}
+    </select>
+</mapper>

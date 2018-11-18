@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableAutoConfiguration
 @RequestMapping("/test")
-public class UserService {
+public class UserServiceTest {
     @RequestMapping("getuser")
     public UserBean getUser() {
         UserBean user = new UserBean();

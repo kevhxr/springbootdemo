@@ -3,15 +3,20 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:sqlserver://HUANGXR-PC:1433;DatabaseName=XrLearn
+    url: jdbc:sqlserver://PC201401120046:1433;DatabaseName=XrLearn
     username: xiaoran1
-    password: 3498765
+    password: 2222
     #使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
   #公共配置与profiles选择无关
-  mybatis:
-    typeAliasesPackage: com.hxr.springbootdemo
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
+
+
+server:
+  #端口号
+  port: 8888
 
 
