@@ -30,6 +30,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserBean> findAllUser() {
-        return null;
+        return userMapper.findAllUsers();
     }
 }

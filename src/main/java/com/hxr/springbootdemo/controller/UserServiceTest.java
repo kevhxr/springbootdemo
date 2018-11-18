@@ -12,7 +12,7 @@ public class UserServiceTest {
     @RequestMapping("getuser")
     public UserBean getUser() {
         UserBean user = new UserBean();
-        user.setName("test");
+        user.setUserName("test");
         return user;
     }
 }
