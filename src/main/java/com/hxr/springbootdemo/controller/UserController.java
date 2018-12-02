@@ -2,6 +2,8 @@ package com.hxr.springbootdemo.controller;
 
 import com.hxr.springbootdemo.entity.UserBean;
 import com.hxr.springbootdemo.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,7 @@ import java.util.List;
 @RequestMapping(value = "/user")
 public class UserController {
 
+    Logger logger = LoggerFactory.getLogger(UserController.class);
     @Resource(name = "userServiceImpl")
     private UserService userService;
 
@@ -32,6 +35,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/get/all")
     public List<UserBean> findAllUsers() {
+        logger.info("findallusers==========");
         List<UserBean> users = userService.findAllUser();
         return users;
     }
