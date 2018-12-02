@@ -1,10 +1,10 @@
 package com.hxr.springbootdemo.entity;
 
-import org.springframework.data.elasticsearch.annotations.Document;
+/*import org.springframework.data.elasticsearch.annotations.Document;*/
 
 import java.util.List;
 
-@Document(indexName = "nbaindex",type = "player")
+/*@Document(indexName = "nbaindex",type = "player")*/
 public class PlayerBean {
 
 

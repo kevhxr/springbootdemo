@@ -35,7 +35,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/get/all")
     public List<UserBean> findAllUsers() {
-        logger.info("findallusers==========");
+        logger.debug("findallusers==========");
         List<UserBean> users = userService.findAllUser();
         return users;
     }

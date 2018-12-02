@@ -1,6 +1,5 @@
 package com.hxr.springbootdemo;
 
-import com.hxr.springbootdemo.elastics.PlayerEsRepository;
 import com.hxr.springbootdemo.entity.NewsBean;
 import com.hxr.springbootdemo.entity.PlayerBean;
 import io.searchbox.client.JestClient;
@@ -8,36 +7,22 @@ import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
-import org.apache.http.HttpHost;
-import org.elasticsearch.action.get.GetRequest;
-import org.elasticsearch.action.get.GetResponse;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.MatchAllQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.ScriptQueryBuilder;
 import org.elasticsearch.script.Script;
-import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+/*import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.ResultsExtractor;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;*/
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.junit.Assert.assertEquals;
 
@@ -48,65 +33,11 @@ public class SpringbootdemoApplicationTests {
     @Autowired
     JestClient jestClient;
 
-    @Autowired
+/*    @Autowired
     PlayerEsRepository playerEsRepository;
 
     @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
-
-    private RestHighLevelClient client = new RestHighLevelClient(
-            RestClient.builder(
-                    new HttpHost("localhost", 9200, "http"),
-                    new HttpHost("localhost", 9201, "http")));
-
-    @Test
-    public void getHighLvl(){
-        GetRequest getRequest = new GetRequest(
-                "hxrindex",
-                "news",
-                "1");
-        try {
-            GetResponse getResponse = client.get(getRequest, RequestOptions.DEFAULT);
-            if (getResponse.isExists()) {
-                long version = getResponse.getVersion();
-                String sourceAsString = getResponse.getSourceAsString();
-                System.out.println(version+sourceAsString);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                client.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @Test
-    public void searchHighLvl(){
-        SearchRequest searchRequest = new SearchRequest();
-        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        QueryBuilder matchQueryBuilder = QueryBuilders.matchQuery("newsAuthor", "kevin");
-        searchSourceBuilder.query(matchQueryBuilder);
-        searchRequest.indices("hxrindex");
-        searchRequest.source(searchSourceBuilder);
-        try {
-            SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
-            SearchHits hits = response.getHits();
-            for (SearchHit hit:hits) {
-                System.out.println(hit.getSourceAsString());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            try {
-                client.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     @Test
     public void esRepoTest(){
@@ -122,6 +53,7 @@ public class SpringbootdemoApplicationTests {
 
     }
 
+
     @Test
     public void esRepoPainlessTest(){
         List<PlayerBean> playerBeans = playerEsRepository.findPlayerBeanByPlayerNameContaining("James");
@@ -131,7 +63,7 @@ public class SpringbootdemoApplicationTests {
         }
 
     }
-
+*/
 
     @Test
     public void testPut() {
