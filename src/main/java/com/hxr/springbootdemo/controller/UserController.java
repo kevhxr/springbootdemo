@@ -27,16 +27,43 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/count/{userId}")
-    public int countUserById(@PathVariable("userId") int userId) {
-        return userService.countUserById(userId);
+    @RequestMapping(value = "/count/{userAge}")
+    public int countUserByAgeLarger(@PathVariable("userAge") int userAge) {
+        return userService.countUserByAgeLarger(userAge);
     }
 
     @ResponseBody
     @RequestMapping(value = "/get/all")
     public List<UserBean> findAllUsers() {
-        logger.debug("findallusers==========");
+        logger.info("findallusers==========");
         List<UserBean> users = userService.findAllUser();
         return users;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/get/{userAlias}/{userAge}")
+    public List<UserBean> findUserByAliasAge(
+            @PathVariable("userAlias") String userAlias,
+            @PathVariable("userAge") int userAge) {
+        logger.info("findUserByAliasAge==========");
+        List<UserBean> users = userService.findUserByAliasAge(userAlias,userAge);
+        return users;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/add/{userName}/{userAlias}/{userAge}")
+    public int insertUser(
+            @PathVariable("userName") String userName,
+            @PathVariable("userAlias") String userAlias,
+            @PathVariable("userAge") int userAge) {
+        logger.info("going to insert User==========");
+
+        UserBean userBean = new UserBean();
+        userBean.setUserName(userName);
+        userBean.setUserAge(userAge);
+        userBean.setUserAlias(userAlias);
+        int insertRowNum = userService.insertUser(userBean);
+        logger.info("successfully insert User=========="+userBean.toString());
+        return insertRowNum;
     }
 }

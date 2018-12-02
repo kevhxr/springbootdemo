@@ -20,10 +20,13 @@
         </Console>
 
 
-        <File name="allLog" fileName="${LOG_HOME}all.log" append="false">
-            <!--<ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>-->
+        <RollingFile name="infoLog" fileName="${LOG_HOME}info.log" filePattern="${LOG_HOME}/info/info-%i.log">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout charset="UTF-8" pattern="[%p] %d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
-        </File>
+            <SizeBasedTriggeringPolicy size="100KB"/>
+            <!-- DefaultRolloverStrategy 中的参数max，可以限制 SizeBasedTriggeringPolicy中size超出后，只保留max个存档-->
+            <DefaultRolloverStrategy max="150"/>
+        </RollingFile>
 
 
         <!-- Appender 3. 输出到滚动保存的文件, 触发保存日志文件的条件是日志文件大于3KB，只保存最新的10个日志-->
@@ -57,15 +60,16 @@
     </appenders>
     <!--root 默认加载-->
     <loggers>
-        <logger name="org.springframework" level="INFO"></logger>
+<!--        <logger name="org.springframework" level="INFO"></logger>
         <logger name="org.mybatis" level="INFO"></logger>
         <logger name="org.elasticsearch" level="INFO"></logger>
         <logger name="org.hibernate" level="INFO"></logger>
-        <logger name="org.elasticsearch" level="INFO"></logger>
+        <logger name="org.elasticsearch" level="INFO"></logger>-->
         <logger name="com.hxr.springbootdemo.controller.UserController" level="DEBUG"></logger>
-        <root level="all">
+        <logger name="com.hxr.springbootdemo.mapper.UserMapper" level="DEBUG"></logger>
+        <root level="WARN">
             <appender-ref ref="Console"/>
-            <appender-ref ref="allLog"/>
+            <appender-ref ref="infoLog"/>
             <appender-ref ref="debugLog"/>
             <!--<appender-ref ref="errorLog"/>-->
             <!--<appender-ref ref="RollingFile"/>-->

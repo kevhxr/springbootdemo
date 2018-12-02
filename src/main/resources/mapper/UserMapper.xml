@@ -25,9 +25,11 @@
         select user_id as userId, user_name AS userName from Users where user_id = #{userId}
     </select>-->
 
-    <resultMap id="collectionMap" type="com.hxr.springbootdemo.entity.UserBean">
+    <resultMap id="collectionMap" type="UserBean">
         <result column="user_id" property="userId" jdbcType="INTEGER" />
         <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="user_age" property="userAge" jdbcType="INTEGER" />
+        <result column="user_alias" property="userAlias" jdbcType="VARCHAR" />
     </resultMap>
 
 
@@ -36,12 +38,23 @@
     </select>
 
 
+    <select id="findUserByAliasAge" resultMap="collectionMap">
+        select * from dbo.Base_Users
+        where user_alias like '%'+#{param1}+'%'
+        and user_age > #{param2};
+    </select>
+
     <select id="countAll" resultMap="collectionMap">
         select count(*) from dbo.Base_Users
     </select>
 
 
-    <select id="countUserById" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-        select count(*) from dbo.Base_Users where user_id = #{userId}
+    <select id="countUserByAgeLarger" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from dbo.Base_Users where user_age > #{userAge}
     </select>
+
+
+    <insert id="insertUser" parameterType="UserBean">
+        insert into dbo.Base_Users values(#{userName},#{userAge},#{userAlias})
+    </insert>
 </mapper>

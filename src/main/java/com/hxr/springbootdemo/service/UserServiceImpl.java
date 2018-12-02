@@ -14,8 +14,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public int countUserById(int userId) {
-        return userMapper.countAll();
+    public int countUserByAgeLarger(int userAge) {
+        return userMapper.countUserByAgeLarger(userAge);
     }
 
     @Override
@@ -31,5 +31,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserBean> findAllUser() {
         return userMapper.findAllUsers();
+    }
+
+    @Override
+    public List<UserBean> findUserByAliasAge(String userAlias, int userAge) {
+        return userMapper.findUserByAliasAge(userAlias,userAge);
+    }
+
+    @Override
+    public int insertUser(UserBean userBean) {
+        return userMapper.insertUser(userBean);
     }
 }
