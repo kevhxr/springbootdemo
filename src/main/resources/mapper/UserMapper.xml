@@ -3,6 +3,10 @@
 
 <mapper namespace="com.hxr.springbootdemo.mapper.UserMapper">
 
+<!--    <cache
+    eviction="FIFO"
+    >
+    </cache>-->
     <resultMap id="generalMap" type="com.hxr.springbootdemo.entity.UserBean">
         <id column="userId" property="userId" jdbcType="INTEGER" />
         <result column="userName" property="userName" jdbcType="VARCHAR" />

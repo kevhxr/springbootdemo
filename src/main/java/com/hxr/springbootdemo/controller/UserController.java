@@ -55,7 +55,7 @@ public class UserController {
     public int insertUser(
             @PathVariable("userName") String userName,
             @PathVariable("userAlias") String userAlias,
-            @PathVariable("userAge") int userAge) {
+            @PathVariable("userAge") int userAge) throws Exception {
         logger.info("going to insert User==========");
 
         UserBean userBean = new UserBean();

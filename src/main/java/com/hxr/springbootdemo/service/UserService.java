@@ -18,5 +18,5 @@ public interface UserService {
     List<UserBean> findUserByAliasAge(String userAlias,int userAge);
 
     @Transactional
-    int insertUser(UserBean userBean);
+    int insertUser(UserBean userBean) throws Exception;
 }

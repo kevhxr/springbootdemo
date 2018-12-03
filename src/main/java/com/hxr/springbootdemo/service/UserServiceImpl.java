@@ -40,6 +40,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int insertUser(UserBean userBean) {
-        return userMapper.insertUser(userBean);
+        int i = userMapper.insertUser(userBean);
+        //rollback must be RuntimeException
+/*        if(i==1) {
+            throw new RuntimeException("ss");
+        }*/
+        return i;
     }
 }
