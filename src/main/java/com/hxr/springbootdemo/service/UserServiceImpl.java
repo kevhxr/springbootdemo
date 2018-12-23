@@ -13,6 +13,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    LoginService loginService;
+
     @Override
     public int countUserByAgeLarger(int userAge) {
         return userMapper.countUserByAgeLarger(userAge);
@@ -46,5 +49,11 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("ss");
         }*/
         return i;
+    }
+
+    @Override
+    public String doLogin(UserBean userBean){
+        String pwd = loginService.getPassword(userBean);
+        return pwd;
     }
 }

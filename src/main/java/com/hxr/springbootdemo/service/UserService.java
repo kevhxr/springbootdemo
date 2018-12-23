@@ -19,4 +19,6 @@ public interface UserService {
 
     @Transactional
     int insertUser(UserBean userBean) throws Exception;
+
+    String doLogin(UserBean userBean);
 }
